@@ -1,9 +1,12 @@
 # -*- coding: cp936 -*-
+'''
 #我女儿喜欢看小马宝莉，也喜欢给简笔画涂色彩
 #我这个脚本就是给她写的， 随意找张动画片屏幕截图， 就可以制成简笔画了
 #用法python pan_painting.py -i 你的图片 例如 python pan_painting.py -y time.jpg
 #此脚本是windows环境python 2.7+opencv3.2版本的
 #需要提前安装speech模块， 安装方法pip install speech
+'''
+print (__doc__)
 import cv2
 #导入cv2这个module模块
 import numpy as np
