@@ -14,9 +14,13 @@ import numpy as np
 #import argparse
 #导入参数模块
 import sys
-import speech
+#import speech
 #加载语音模块
-speech.say("现在开始")
+def nothing(x):
+    pass
+#自定义一个nothing的模块， 后面的trackbar动作会用到
+
+#speech.say("现在开始")
 #说话， 代表开始
 #ap = argparse.ArgumentParser()
 #ap.add_argument("-i", "--image", required=True,help="path to the input image")
@@ -31,27 +35,39 @@ im = cv2.imread(sys.argv[1])
 kernel = np.ones((5,5),np.uint8)
 #im=cv2.imread('time.jpg',0)
 
-cv2.imshow('原图',im)
+cv2.imshow('raw',im)
+gray=cv2.cvtColor(im,6)
 #显示这个图片
-ret, thresh=cv2.threshold(im,150,255,cv2.THRESH_BINARY_INV)
-#黑白差值化
-#cv2.imshow('thresh',thresh)
-#显示黑白差值图
-edges = cv2.Canny(im,0,255,3)
-#这个是边缘图，黑底，白线
-edges_INV =cv2.bitwise_not(edges)
-#取反， 白底，黑线
-#erosion = cv2.erode(edges1,kernel,iterations = 1)
-#dilation = cv2.dilate(edges1,kernel,iterations = 1)
-cv2.imwrite(sys.argv[1]+'.jpg',edges_INV)
-#写入源文件， 替换掉原图
-cv2.imshow('简笔画成品图',edges_INV)
+cv2.namedWindow('edge',0)
+#创建一个名字叫edge的新窗口，用来显示加工后的效果图， 0的意思是， 窗口可伸缩
+cv2.createTrackbar('thrs1', 'edge', 127, 255, nothing)
+#创建一个叫做thrs1的滑动条，默认值是127， 在0-255的范围内， 手动调整阀值范围， 调用上面的nothing模块，其实相当于什么都没做，这是格式要求的。
+while(True):
+#循环，为什么要循环？因为手动调整阀值，效果跟着变，不停地调整，不停的变，所以要循环
+    thrs1 = cv2.getTrackbarPos('thrs1', 'edge')
+    #print thrs1
+    #阀值thrs1等于edge窗口中thrs1的值
+    ret, thresh=cv2.threshold(gray,thrs1,255,cv2.THRESH_BINARY_INV)
+    #
+    #黑白差值化,标准取自滑动条上的阀值
+    #cv2.imshow('thresh',thresh)
+    #显示黑白差值图
+    edges = cv2.Canny(thresh,0,255,3)
+    #这个是边缘图，黑底，白线
+    edges_INV =cv2.bitwise_not(edges)
+    #取反， 白底，黑线
+    #erosion = cv2.erode(edges1,kernel,iterations = 1)
+    #dilation = cv2.dilate(edges1,kernel,iterations = 1)
+    #cv2.imwrite(sys.argv[1]+'.jpg',edges_INV)
+    #写入源文件， 替换掉原图
+    cv2.imshow('edge',edges_INV)
 
-#显示新图
+    #显示新图
+    cv2.waitKey(50)
 #cv2.imshow('erosion',erosion)
 #cv2.imshow('dilation',dilation)
-speech.say("转换结束")
+#speech.say("转换结束")
 #语音提示， 提示程序完成
-cv2.waitKey(0)
+#cv2.waitKey(0)
 #按任意键退出
 
