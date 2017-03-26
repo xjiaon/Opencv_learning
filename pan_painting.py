@@ -6,7 +6,7 @@
 #此脚本是windows环境python 2.7+opencv3.2版本的
 #需要提前安装speech模块， 安装方法pip install speech
 '''
-print (__doc__)
+
 import cv2
 #导入cv2这个module模块
 import numpy as np
@@ -16,8 +16,20 @@ import numpy as np
 import sys
 #import speech
 #加载语音模块
-def nothing(x):
-    pass
+if __name__ == '__main__':
+#如果是其他脚本调用，不执行下面的命令
+    print(__doc__)
+    #显示前面绿色的声明的内容
+
+    try:
+        fn = sys.argv[1]
+        #尝试获得命令的第一个参数， 也就是图片的名字
+    except:
+        fn = 'time.jpg'
+        print fn
+        #如果找不到上面指定的图片名称， 默认名称为time.jpg
+    def nothing(x):
+        pass
 #自定义一个nothing的模块， 后面的trackbar动作会用到
 
 #speech.say("现在开始")
@@ -30,50 +42,50 @@ def nothing(x):
 
 # load the image and resize it to a smaller factor so that
 # the shapes can be approximated better
-im = cv2.imread(sys.argv[1])
+    im = cv2.imread(fn)
 #读取命令中代入的图片名称
-kernel = np.ones((5,5),np.uint8)
+    kernel = np.ones((5,5),np.uint8)
 #im=cv2.imread('time.jpg',0)
-res = cv2.resize(im,(1280, 960), interpolation = cv2.INTER_CUBIC)
+    res = cv2.resize(im,(1280, 960), interpolation = cv2.INTER_CUBIC)
 #把原图调整到适合屏幕的1280x960
 #cv2.imshow('原图',im)
 
-gray=cv2.cvtColor(res,6)
+    gray=cv2.cvtColor(res,6)
 #把彩色图片黑吧=白灰度化
-res1=cv2.resize(gray,(256, 192), interpolation = cv2.INTER_CUBIC)
+    res1=cv2.resize(gray,(256, 192), interpolation = cv2.INTER_CUBIC)
 #把黑白后的原图缩小尺寸， 放到屏幕左上角， 做原图显示用
 
-cv2.namedWindow('简笔画',0)
+    cv2.namedWindow('简笔画',0)
 #创建一个名字叫edge的新窗口，用来显示加工后的效果图， 0的意思是， 窗口可伸缩
-cv2.createTrackbar('阀值', '简笔画', 203, 255, nothing)
+    cv2.createTrackbar('阀值', '简笔画', 203, 255, nothing)
 #创建一个叫做thrs1的滑动条，默认值是127， 在0-255的范围内， 手动调整阀值范围， 调用上面的nothing模块，其实相当于什么都没做，这是格式要求的。
-while(True):
+    while(True):
 #循环，为什么要循环？因为手动调整阀值，效果跟着变，不停地调整，不停的变，所以要循环
-    thrs1 = cv2.getTrackbarPos('阀值', '简笔画')
+        thrs1 = cv2.getTrackbarPos('阀值', '简笔画')
     #print thrs1
     #阀值thrs1等于edge窗口中thrs1的值
-    ret, thresh=cv2.threshold(gray,thrs1,255,cv2.THRESH_BINARY_INV)
+        ret, thresh=cv2.threshold(gray,thrs1,255,cv2.THRESH_BINARY_INV)
     #
     #黑白差值化,标准取自滑动条上的阀值
     #cv2.imshow('thresh',thresh)
     #显示黑白差值图
-    edges = cv2.Canny(thresh,0,255,3)
+        edges = cv2.Canny(thresh,0,255,3)
     #这个是边缘图，黑底，白线
-    edges_INV =cv2.bitwise_not(edges)
+        edges_INV =cv2.bitwise_not(edges)
     #取反， 白底，黑线
     #erosion = cv2.erode(edges1,kernel,iterations = 1)
     #dilation = cv2.dilate(edges1,kernel,iterations = 1)
     #cv2.imwrite(sys.argv[1]+'.jpg',edges_INV)
     #写入源文件， 替换掉原图
-    edges_INV[0:192,0:256]=res1
+        edges_INV[0:192,0:256]=res1
     #左上角256x192部分等于上面的缩小的灰度原图
 
-    cv2.imshow('简笔画',edges_INV)
+        cv2.imshow('简笔画',edges_INV)
 
     #显示新图
-    if cv2.waitKey(5)==27:
-        break
-cv2.destroyAllWindows()
+        if cv2.waitKey(5)==27:
+            break
+    cv2.destroyAllWindows()
 #cv2.imshow('erosion',erosion)
 #cv2.imshow('dilation',dilation)
 #speech.say("转换结束")
