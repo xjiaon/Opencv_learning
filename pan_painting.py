@@ -17,16 +17,22 @@ import sys
 #import speech
 #加载语音模块
 if __name__ == '__main__':
+    
 #如果是其他脚本调用，不执行下面的命令
     print(__doc__)
     #显示前面绿色的声明的内容
-
+    
+    print ('当前opencv版本为'+cv2.__version__)
+    #显示opencv版本
+    print ('你的python版本信息为')
+    print (sys.version_info)
+        
     try:
         fn = sys.argv[1]
         #尝试获得命令的第一个参数， 也就是图片的名字
     except:
         fn = 'time.jpg'
-        print fn
+        #print fn
         #如果找不到上面指定的图片名称， 默认名称为time.jpg
     def nothing(x):
         pass
