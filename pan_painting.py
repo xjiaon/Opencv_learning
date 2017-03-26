@@ -16,6 +16,7 @@ import numpy as np
 import sys
 #import speech
 #加载语音模块
+import datetime
 if __name__ == '__main__':
 #如果是其他脚本调用，不执行下面的命令
     print(__doc__)
@@ -83,8 +84,15 @@ if __name__ == '__main__':
         cv2.imshow('简笔画',edges_INV)
 
     #显示新图
-        if cv2.waitKey(5)==27:
+        cn=cv2.waitKey(5)
+        if cn==27:
             break
+        if cn==ord(' '):
+            #cv2.imwrite('time1.jpg',edges_INV)
+            now = datetime.datetime.now()
+            #print ("yes")
+            im_name1=(now.strftime('%Y-%m-%d_%H%M%S')+'.jpg')
+            cv2.imwrite(im_name1,edges_INV)
     cv2.destroyAllWindows()
 #cv2.imshow('erosion',erosion)
 #cv2.imshow('dilation',dilation)
