@@ -35,11 +35,14 @@ im = cv2.imread(sys.argv[1])
 kernel = np.ones((5,5),np.uint8)
 #im=cv2.imread('time.jpg',0)
 res = cv2.resize(im,(1280, 960), interpolation = cv2.INTER_CUBIC)
-
+#把原图调整到适合屏幕的1280x960
 #cv2.imshow('原图',im)
+
 gray=cv2.cvtColor(res,6)
+#把彩色图片黑吧=白灰度化
 res1=cv2.resize(gray,(256, 192), interpolation = cv2.INTER_CUBIC)
-#显示这个图片
+#把黑白后的原图缩小尺寸， 放到屏幕左上角， 做原图显示用
+
 cv2.namedWindow('简笔画',0)
 #创建一个名字叫edge的新窗口，用来显示加工后的效果图， 0的意思是， 窗口可伸缩
 cv2.createTrackbar('阀值', '简笔画', 203, 255, nothing)
@@ -63,6 +66,7 @@ while(True):
     #cv2.imwrite(sys.argv[1]+'.jpg',edges_INV)
     #写入源文件， 替换掉原图
     edges_INV[0:192,0:256]=res1
+    #左上角256x192部分等于上面的缩小的灰度原图
 
     cv2.imshow('简笔画',edges_INV)
 
