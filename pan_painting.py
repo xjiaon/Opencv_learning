@@ -40,7 +40,7 @@ gray=cv2.cvtColor(im,6)
 #显示这个图片
 cv2.namedWindow('edge',0)
 #创建一个名字叫edge的新窗口，用来显示加工后的效果图， 0的意思是， 窗口可伸缩
-cv2.createTrackbar('thrs1', 'edge', 127, 255, nothing)
+cv2.createTrackbar('thrs1', 'edge', 203, 255, nothing)
 #创建一个叫做thrs1的滑动条，默认值是127， 在0-255的范围内， 手动调整阀值范围， 调用上面的nothing模块，其实相当于什么都没做，这是格式要求的。
 while(True):
 #循环，为什么要循环？因为手动调整阀值，效果跟着变，不停地调整，不停的变，所以要循环
