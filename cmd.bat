@@ -1,1 +1,1 @@
-%PYTHON% pan_painting.py
+cmd.exe
