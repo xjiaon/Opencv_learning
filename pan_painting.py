@@ -17,7 +17,6 @@ import numpy as np
 import sys
 #import speech
 #加载语音模块
-<<<<<<< HEAD
 def draw_circle(event,x,y,flags,param):
     #global ix,iy,drawing,mode
     if event == cv2.EVENT_LBUTTONDBLCLK:
@@ -29,9 +28,6 @@ def draw_circle(event,x,y,flags,param):
 def nothing(x):
     pass
 #自定义一个nothing的模块， 后面的trackbar动作会用到
-=======
-import datetime
->>>>>>> parent of 462f62c... Revert "yes"
 if __name__ == '__main__':
 #如果是其他脚本调用，不执行下面的命令
     print(__doc__)
@@ -102,7 +98,6 @@ if __name__ == '__main__':
         cn=cv2.waitKey(5)
         if cn==27:
             break
-<<<<<<< HEAD
         if cn==ord('m'):
             print 'm'
             mode = not mode
@@ -111,14 +106,6 @@ if __name__ == '__main__':
                 edges_INV=res
                 cv2.imshow('简笔画1',res)
             
-=======
-        if cn==ord(' '):
-            #cv2.imwrite('time1.jpg',edges_INV)
-            now = datetime.datetime.now()
-            #print ("yes")
-            im_name1=(now.strftime('%Y-%m-%d_%H%M%S')+'.jpg')
-            cv2.imwrite(im_name1,edges_INV)
->>>>>>> parent of 462f62c... Revert "yes"
     cv2.destroyAllWindows()
 #cv2.imshow('erosion',erosion)
 #cv2.imshow('dilation',dilation)
