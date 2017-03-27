@@ -16,6 +16,17 @@ import numpy as np
 import sys
 #import speech
 #加载语音模块
+def draw_circle(event,x,y,flags,param):
+    #global ix,iy,drawing,mode
+    if event == cv2.EVENT_LBUTTONDBLCLK:
+        if mode==True:
+                
+            print x,y
+        else:
+            print y,x
+def nothing(x):
+    pass
+#自定义一个nothing的模块， 后面的trackbar动作会用到
 if __name__ == '__main__':
     
 #如果是其他脚本调用，不执行下面的命令
@@ -34,9 +45,9 @@ if __name__ == '__main__':
         fn = 'time.jpg'
         #print fn
         #如果找不到上面指定的图片名称， 默认名称为time.jpg
-    def nothing(x):
-        pass
-#自定义一个nothing的模块， 后面的trackbar动作会用到
+    mode=1
+    #自定义一个模式,按m键切换原图,效果图
+
 
 #speech.say("现在开始")
 #说话， 代表开始
@@ -89,8 +100,17 @@ if __name__ == '__main__':
         cv2.imshow('简笔画',edges_INV)
 
     #显示新图
-        if cv2.waitKey(5)==27:
+        cn=cv2.waitKey(5)
+        if cn==27:
             break
+        if cn==ord('m'):
+            print 'm'
+            mode = not mode
+            print mode
+            if mode==True:
+                edges_INV=res
+                cv2.imshow('简笔画1',res)
+            
     cv2.destroyAllWindows()
 #cv2.imshow('erosion',erosion)
 #cv2.imshow('dilation',dilation)
