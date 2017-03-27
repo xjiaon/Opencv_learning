@@ -1,3 +1,8 @@
+# -*- coding: cp936 -*-
+'''
+本例旨在利用trackbar找出要跟踪物体的颜色，亮度等信息
+例如本人拿这个来找激光的范围
+'''
 import cv2
 import numpy as np
 
