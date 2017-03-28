@@ -47,7 +47,7 @@ print cap.get(3)
 print cap.get(4)
 
 
-cv2.namedWindow('颜色捕捉')
+cv2.namedWindow('颜色捕捉',0)
 cv2.createTrackbar('色彩最低', '颜色捕捉', 0, 180, nothing)
 cv2.createTrackbar('色彩最高', '颜色捕捉', 255, 255, nothing)
 cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
