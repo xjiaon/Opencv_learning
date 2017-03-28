@@ -4,7 +4,8 @@
 #我女儿喜欢看小马宝莉，也喜欢给简笔画涂色彩
 #我这个脚本就是给她写的， 随意找张动画片屏幕截图， 就可以制成简笔画了
 #用法python pan_painting.py  你的图片 例如 python pan_painting.py  time.jpg
-#此脚本是windows环境python 2.7+opencv3.2版本的
+#此脚本是windows环境python 2.7+opencv3.2版本的， 配置见下面的链接
+https://github.com/wjb711/Opencv_learning/blob/master/windows_python2.7_opencv3.2%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%8C%87%E5%AF%BC.txt
 #需要提前安装speech模块， 安装方法pip install speech
 '''
 
