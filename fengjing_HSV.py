@@ -53,23 +53,11 @@ print (sys.version_info)
 #speech.say("推荐使用720p或1080p高清摄像头")
 
 #cv2.namedWindow('mix',0)
-print sys.argv[0],sys.argv[1]
+#print sys.argv[0],sys.argv[1]
 
 cap=cv2.VideoCapture(0)
-try:
-        
-    ret = cap.set(3,1280)
-    ret = cap.set(3,960)
-    y1=1280
-    x1=960
-    print y1,x1
-
-except:
-    ret = cap.set(3,640)
-    ret = cap.set(3,480)
-    y1=640
-    x1=480
-    print y1,x1
+ret = cap.set(3,960)
+ret = cap.set(4,720)
 try:
     fn = sys.argv[1]
     
@@ -78,33 +66,40 @@ except:
     fn = 'images/lufugong.jpg'
 #fn = cv2.resize(fn,(640, 480), interpolation = cv2.INTER_CUBIC)
 print ('第一个参数是')
-print   sys.argv[1]   
+#print   sys.argv[1]   
 print fn
     #如果找不到上面指定的图片名称， 默认名称为lufugong.jpg
 #尝试用1280x960打开摄像头， 如果失败， 使用默认的640x480
 
 print ('start here')
 print ('实际分辨率为')
-print cap.get(3)
-print cap.get(4)
+y1=cap.get(3)
+x1=cap.get(4)
+print y1,x1
 #ret = cap.set(3,1280)
 #ret = cap.set(4,720)
 c=1
 d=0
-im = cv2.imread(fn)
+
+#im = cv2.imread(fn)
 
 #im_white= cv2.imread('images/white.jpg')
 im = cv2.imread(fn)
+if x1==480.0:
+    print ('480')
+    im = cv2.resize(im,(640, 480), interpolation = cv2.INTER_CUBIC)
+else:
+    im = cv2.resize(im,(960, 720), interpolation = cv2.INTER_CUBIC)
 cv2.namedWindow('颜色捕捉')
 cv2.namedWindow('123')
 
 cv2.setMouseCallback('颜色捕捉',draw_circle)
 cv2.createTrackbar('色彩最低', '颜色捕捉', 0, 255, nothing)
-cv2.createTrackbar('色彩最高', '颜色捕捉', 255, 255, nothing)
+cv2.createTrackbar('色彩最高', '颜色捕捉', 139, 255, nothing)
 cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
-cv2.createTrackbar('纯度最高', '颜色捕捉', 255, 255, nothing)
-cv2.createTrackbar('亮度最低', '颜色捕捉', 0, 255, nothing)
-cv2.createTrackbar('亮度最高', '颜色捕捉', 255, 255, nothing)
+cv2.createTrackbar('纯度最高', '颜色捕捉', 61, 255, nothing)
+cv2.createTrackbar('亮度最低', '颜色捕捉', 120, 255, nothing)
+cv2.createTrackbar('亮度最高', '颜色捕捉', 248, 255, nothing)
 
 
 
@@ -152,6 +147,7 @@ while (True):
     thresh1_INVa=cv2.cvtColor(thresh1_INV,cv2.COLOR_GRAY2BGR)
 #转化通道
     im2=cv2.imread(fn)
+    im2=im
 #背景图
 
 
