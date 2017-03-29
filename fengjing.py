@@ -86,7 +86,7 @@ while (True):
     cv2.imshow('原图',frame)
     #原图
     gray = cv2.cvtColor(frame, 6)
-    cv2.imshow('灰度图',gray)
+    cv2.imshow('原图灰度',gray)
     #灰度图
     # Convert BGR to HSV
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -103,7 +103,7 @@ while (True):
 
     # Threshold the HSV image to get only blue colors
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
-    cv2.imshow('mask',mask)
+    cv2.imshow('Video_mask',mask)
 
     # Bitwise-AND mask and original image
     res = cv2.bitwise_not(frame,frame, mask= mask)
