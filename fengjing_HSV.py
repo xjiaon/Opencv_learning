@@ -8,7 +8,7 @@
 #此脚本是windows环境python 2.7+opencv3.2版本的， 配置见下面的链接
 https://github.com/wjb711/Opencv_learning/blob/master/windows_python2.7_opencv3.2%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%8C%87%E5%AF%BC.txt
 #需要提前安装speech模块， 安装方法pip install speech
-如提示如下错误
+如提示如下错误:
 no module named win32com.client错误解决
 请下载对应pywin32插件
 https://sourceforge.net/projects/pywin32/files/pywin32/
