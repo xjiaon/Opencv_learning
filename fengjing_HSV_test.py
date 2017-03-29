@@ -22,8 +22,6 @@ import numpy as np
 import time
 import sys
 import datetime
-import os
-
 #import win32com
 #import speech
 
@@ -80,36 +78,34 @@ x1=cap.get(4)
 print y1,x1
 #ret = cap.set(3,1280)
 #ret = cap.set(4,720)
-for filename in os.listdir(r'.\images'):
-    fn='images/'+filename
-    c=1
-    d=0
+c=1
+d=0
 
 #im = cv2.imread(fn)
 
 #im_white= cv2.imread('images/white.jpg')
-    im = cv2.imread(fn)
-    if x1==480.0:
-        print ('480')
-        im = cv2.resize(im,(640, 480), interpolation = cv2.INTER_CUBIC)
-    else:
-        im = cv2.resize(im,(960, 720), interpolation = cv2.INTER_CUBIC)
-    cv2.namedWindow('颜色捕捉')
-    cv2.namedWindow('123')
+im = cv2.imread(fn)
+if x1==480.0:
+    print ('480')
+    im = cv2.resize(im,(640, 480), interpolation = cv2.INTER_CUBIC)
+else:
+    im = cv2.resize(im,(960, 720), interpolation = cv2.INTER_CUBIC)
+cv2.namedWindow('颜色捕捉')
+cv2.namedWindow('123')
 
-    cv2.setMouseCallback('颜色捕捉',draw_circle)
-    cv2.createTrackbar('色彩最低', '颜色捕捉', 0, 255, nothing)
-    cv2.createTrackbar('色彩最高', '颜色捕捉', 139, 255, nothing)
-    cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
-    cv2.createTrackbar('纯度最高', '颜色捕捉', 61, 255, nothing)
-    cv2.createTrackbar('亮度最低', '颜色捕捉', 120, 255, nothing)
-    cv2.createTrackbar('亮度最高', '颜色捕捉', 248, 255, nothing)
+cv2.setMouseCallback('颜色捕捉',draw_circle)
+cv2.createTrackbar('色彩最低', '颜色捕捉', 0, 255, nothing)
+cv2.createTrackbar('色彩最高', '颜色捕捉', 139, 255, nothing)
+cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
+cv2.createTrackbar('纯度最高', '颜色捕捉', 61, 255, nothing)
+cv2.createTrackbar('亮度最低', '颜色捕捉', 120, 255, nothing)
+cv2.createTrackbar('亮度最高', '颜色捕捉', 248, 255, nothing)
 
 
 
-    while (True):
+while (True):
 
-        ret,im1=cap.read()
+    ret,im1=cap.read()
         
     #cv2.imshow('原图',frame)
     #原图
@@ -117,14 +113,14 @@ for filename in os.listdir(r'.\images'):
     #cv2.imshow('原图灰度',gray)
     #灰度图
     # Convert BGR to HSV
-        hsv = cv2.cvtColor(im1, cv2.COLOR_BGR2HSV)
+    hsv = cv2.cvtColor(im1, cv2.COLOR_BGR2HSV)
 
-        thrs1 = cv2.getTrackbarPos('色彩最低', '颜色捕捉')
-        thrs2 = cv2.getTrackbarPos('色彩最高', '颜色捕捉')
-        thrs3 = cv2.getTrackbarPos('纯度最低', '颜色捕捉')
-        thrs4 = cv2.getTrackbarPos('纯度最高', '颜色捕捉')
-        thrs5 = cv2.getTrackbarPos('亮度最低', '颜色捕捉')
-        thrs6 = cv2.getTrackbarPos('亮度最高', '颜色捕捉')
+    thrs1 = cv2.getTrackbarPos('色彩最低', '颜色捕捉')
+    thrs2 = cv2.getTrackbarPos('色彩最高', '颜色捕捉')
+    thrs3 = cv2.getTrackbarPos('纯度最低', '颜色捕捉')
+    thrs4 = cv2.getTrackbarPos('纯度最高', '颜色捕捉')
+    thrs5 = cv2.getTrackbarPos('亮度最低', '颜色捕捉')
+    thrs6 = cv2.getTrackbarPos('亮度最高', '颜色捕捉')
     #print mode
     #print thrs1
 
@@ -133,59 +129,61 @@ for filename in os.listdir(r'.\images'):
 #前景图片
     #gray1=cv2.cvtColor(im1,6)
 #灰度处理
-        lower_blue = np.array([thrs1,thrs3,thrs5])
-        upper_blue = np.array([thrs2,thrs4,thrs6])
+    lower_blue = np.array([thrs1,thrs3,thrs5])
+    upper_blue = np.array([thrs2,thrs4,thrs6])
 
     # Threshold the HSV image to get only blue colors
-        thresh1 = cv2.inRange(hsv, lower_blue, upper_blue)
+    thresh1 = cv2.inRange(hsv, lower_blue, upper_blue)
 
     #thresh1_INV=cv2.bitwise_not(mask)
 
     #ret,thresh1=cv2.threshold(gray1,thrs1,thrs2,cv2.THRESH_BINARY)
     #cv2.imshow('thresh1',thresh1)
 #阀值化
-        thresh1a=cv2.cvtColor(thresh1,cv2.COLOR_GRAY2BGR)
+    thresh1a=cv2.cvtColor(thresh1,cv2.COLOR_GRAY2BGR)
 #转化通道
-        thresh1_INV=cv2.bitwise_not(thresh1)
+    thresh1_INV=cv2.bitwise_not(thresh1)
 #阀值取反
-        thresh1_INVa=cv2.cvtColor(thresh1_INV,cv2.COLOR_GRAY2BGR)
+    thresh1_INVa=cv2.cvtColor(thresh1_INV,cv2.COLOR_GRAY2BGR)
 #转化通道
-        im2=cv2.imread(fn)
-        im2=im
+    im2=cv2.imread(fn)
+    im2=im
 #背景图
 
 
-        im_FG=cv2.add(im1,thresh1a)
+    im_FG=cv2.add(im1,thresh1a)
 #前景图把人物抠出来
 
-        im_BG=cv2.add(im2,thresh1_INVa)
+    im_BG=cv2.add(im2,thresh1_INVa)
 #背景图把人物阴影去除
-        im_all=cv2.bitwise_and(im_FG,im_BG)
+    im_all=cv2.bitwise_and(im_FG,im_BG)
+    center = (0, 0)
+    mixed_clone = cv2.seamlessClone(im_FG, im2, thresh1, center, cv2.MIXED_CLONE)
 #合并人物和背景
 #cv2.imshow('s1',im1)
 #cv2.imshow('s2',im2)
 #cv2.imshow('im3',im3)
 #cv2.imshow('im_BG',im_BG)
 #cv2.imshow('im_FG',im_FG)
-        cv2.imshow('颜色捕捉',im_all)
-        cv2.imshow('123',im_all)
-        cn=cv2.waitKey(30)
-        if cn==ord(' '):
-            d=c+50
-        if c==d:
-            print ('0')
-            cn=cv2.waitKey(1000)
-            now = datetime.datetime.now()
+    cv2.imshow('颜色捕捉',im_all)
+    cv2.imshow('123',im_all)
+    #cv2.imshow('456',mixed_clone)
+    cn=cv2.waitKey(50)
+    if cn==ord(' '):
+        d=c+50
+    if c==d:
+        print ('0')
+        cn=cv2.waitKey(3000)
+        now = datetime.datetime.now()
             #print ("yes")
-            im_name1=(now.strftime('%Y-%m-%d_%H%M%S')+'.jpg')
+        im_name1=(now.strftime('%Y-%m-%d_%H%M%S')+'.jpg')
         
-            cv2.imwrite('images/'+im_name1,im_all)
-            cv2.imshow('Photo',im_all)
-            cv2.waitKey(1000)
-            cv2.destroyWindow('Photo')
-            print ('done')
-            break
-        c=c+1
+        cv2.imwrite('images/'+im_name1,im_all)
+        cv2.imshow('Photo',im_all)
+        cv2.waitKey(2000)
+        cv2.destroyWindow('Photo')
+        print ('done')
+    c=c+1
         
 
 ############################################################
