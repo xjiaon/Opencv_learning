@@ -72,125 +72,64 @@ im = cv2.imread(fn)
 im_white= cv2.imread('images/white.jpg')
 im = cv2.imread(fn)
 cv2.namedWindow('颜色捕捉',0)
-cv2.createTrackbar('色彩最低', '颜色捕捉', 0, 180, nothing)
-cv2.createTrackbar('色彩最高', '颜色捕捉', 180, 180, nothing)
-cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
-cv2.createTrackbar('纯度最高', '颜色捕捉', 255, 255, nothing)
-cv2.createTrackbar('亮度最低', '颜色捕捉', 0, 255, nothing)
-cv2.createTrackbar('亮度最高', '颜色捕捉', 255, 255, nothing)
+cv2.createTrackbar('阀值最低', '颜色捕捉', 0, 255, nothing)
+cv2.createTrackbar('阀值最高', '颜色捕捉', 255, 255, nothing)
+#cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
+#cv2.createTrackbar('纯度最高', '颜色捕捉', 255, 255, nothing)
+#cv2.createTrackbar('亮度最低', '颜色捕捉', 0, 255, nothing)
+#cv2.createTrackbar('亮度最高', '颜色捕捉', 255, 255, nothing)
 
 while (True):
 
-    ret,frame=cap.read()
+    ret,im1=cap.read()
         
-    cv2.imshow('原图',frame)
+    #cv2.imshow('原图',frame)
     #原图
-    gray = cv2.cvtColor(frame, 6)
-    cv2.imshow('原图灰度',gray)
+    #gray = cv2.cvtColor(frame, 6)
+    #cv2.imshow('原图灰度',gray)
     #灰度图
     # Convert BGR to HSV
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    thrs1 = cv2.getTrackbarPos('色彩最低', '颜色捕捉')
-    thrs2 = cv2.getTrackbarPos('色彩最高', '颜色捕捉')
-    thrs3 = cv2.getTrackbarPos('纯度最低', '颜色捕捉')
-    thrs4 = cv2.getTrackbarPos('纯度最高', '颜色捕捉')
-    thrs5 = cv2.getTrackbarPos('亮度最低', '颜色捕捉')
-    thrs6 = cv2.getTrackbarPos('亮度最高', '颜色捕捉')
+    #hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    thrs1 = cv2.getTrackbarPos('阀值最低', '颜色捕捉')
+    thrs2 = cv2.getTrackbarPos('阀值最高', '颜色捕捉')
+    #thrs3 = cv2.getTrackbarPos('纯度最低', '颜色捕捉')
+    #thrs4 = cv2.getTrackbarPos('纯度最高', '颜色捕捉')
+    #thrs5 = cv2.getTrackbarPos('亮度最低', '颜色捕捉')
+    #thrs6 = cv2.getTrackbarPos('亮度最高', '颜色捕捉')
 
-    # define range of blue color in HSV
-    lower_blue = np.array([thrs1,thrs3,thrs5])
-    upper_blue = np.array([thrs2,thrs4,thrs6])
+#im1=cv2.imread('ren.jpg')
+    cv2.imshow('1',im1)
+#前景图片
+    gray1=cv2.cvtColor(im1,6)
+#灰度处理
+    ret,thresh1=cv2.threshold(gray1,thrs1,thrs2,cv2.THRESH_BINARY)
+    cv2.imshow('thresh1',thresh1)
+#阀值化
+    thresh1a=cv2.cvtColor(thresh1,cv2.COLOR_GRAY2BGR)
+#转化通道
+    thresh1_INV=cv2.bitwise_not(thresh1)
+#阀值取反
+    thresh1_INVa=cv2.cvtColor(thresh1_INV,cv2.COLOR_GRAY2BGR)
+#转化通道
+    im2=cv2.imread(fn)
+#背景图
 
-    # Threshold the HSV image to get only blue colors
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
-    cv2.imshow('Video_mask',mask)
 
-    # Bitwise-AND mask and original image
-    res = cv2.bitwise_not(frame,frame, mask= mask)
-    cv2.imshow('颜色捕捉',res)
+    im_FG=cv2.add(im1,thresh1a)
+#前景图把人物抠出来
+
+    im_BG=cv2.add(im2,thresh1_INVa)
+#背景图把人物阴影去除
+    im_all=cv2.bitwise_and(im_FG,im_BG)
+#合并人物和背景
+#cv2.imshow('s1',im1)
+#cv2.imshow('s2',im2)
+#cv2.imshow('im3',im3)
+#cv2.imshow('im_BG',im_BG)
+#cv2.imshow('im_FG',im_FG)
+    cv2.imshow('颜色捕捉',im_all)
+    cv2.waitKey(50)
 
 ############################################################
     
 
-    if cv2.waitKey(10)==ord('9'):
-
-        d=c+10
-
-        print 'key 9 press'
-
-        #cv2.waitKey(3000)
-
-        #timestr = time.strftime("%Y%m%d-%H%M%S")
-
-        #cv2.waitKey(5000)
-
-        #ret,frame=cap.read()
-
-        #cv2.imshow('222',frame)
-
-        #cv2.imwrite('images\pic'+timestr+'.jpg',frame)
-
-        #cv2.imshow('111',frame)
-
-        #cv2.waitKey(3000)
-
-        #cv2.destroyWindow('111')
-
-    #if c==d:
-
-        #timestr = time.strftime("%Y%m%d-%H%M%S")
-
-        #cv2.imwrite('images\pic'+timestr+'.jpg',frame)
-
-    #    im=frame
-
-    #    cv2.imshow('111',frame)
-
-    #    cv2.waitKey(1000)
-
-    #    cv2.destroyWindow('111')
-
- 
-
-
-    a,thresh=cv2.threshold(gray,135,255,cv2.THRESH_BINARY)
-    cv2.imshow('阀值图',thresh)
-    #阀值图
-    thresh_INV=cv2.bitwise_not(thresh)
-     
-    cv2.imshow('阀值图取反',thresh_INV)
-    #阀值图取反
-    dst1=cv2.add(frame,frame,mask=thresh_INV)
-    #dst1=cv2.add(frame,frame,mask=mask)
-    cv2.imshow('原图+阀值取反',dst1)
-    dst2=cv2.add(frame,frame,mask=thresh)
-    cv2.imshow('原图+阀值',dst2)
-    #im_dst1=cv2.bitwise_and(im,im,mask=thresh)
-
-    im_dst1=cv2.add(im,im,mask=thresh)
-
-    mixed_clone =cv2.add(im_dst1,dst1)
-
-    #cv2.imshow('mix',mixed_clone)
-    cv2.imshow('最终',mixed_clone)
-    if cv2.waitKey(1)==ord('0'):
-
-        d=c+20
-
-        print 'key 0 press'
-
-    if c==d:
-
-        timestr = time.strftime("%Y%m%d-%H%M%S")
-
-        cv2.imwrite('images\pic'+timestr+'.jpg',mixed_clone)
-
-        cv2.imshow('photo',mixed_clone)
-
-        cv2.waitKey(2000)
-
-        cv2.destroyWindow('photo')
-
-    c=c+1
-
-    print c
