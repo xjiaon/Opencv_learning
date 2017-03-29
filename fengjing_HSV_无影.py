@@ -97,8 +97,8 @@ cv2.setMouseCallback('颜色捕捉',draw_circle)
 cv2.createTrackbar('色彩最低', '颜色捕捉', 0, 255, nothing)
 cv2.createTrackbar('色彩最高', '颜色捕捉', 139, 255, nothing)
 cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
-cv2.createTrackbar('纯度最高', '颜色捕捉', 61, 255, nothing)
-cv2.createTrackbar('亮度最低', '颜色捕捉', 120, 255, nothing)
+cv2.createTrackbar('纯度最高', '颜色捕捉', 37, 255, nothing)
+cv2.createTrackbar('亮度最低', '颜色捕捉', 113, 255, nothing)
 cv2.createTrackbar('亮度最高', '颜色捕捉', 248, 255, nothing)
 
 
