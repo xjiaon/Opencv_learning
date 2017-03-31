@@ -13,7 +13,7 @@ import numpy as np
 def nothing(x):
     pass
 cv2.namedWindow('视频色彩',0)
-cv2.createTrackbar('色彩选择', '视频色彩', 0, 11, nothing)
+cv2.createTrackbar('色彩选择', '视频色彩', 9, 11, nothing)
 
 cap=cv2.VideoCapture(0)
 while(1):
