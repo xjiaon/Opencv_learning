@@ -106,9 +106,9 @@ if __name__ == '__main__':
     #写入源文件， 替换掉原图
         edges_INV[0:192,0:256]=res1
     #左上角256x192部分等于上面的缩小的灰度原图
-        flipped = cv2.flip(edges_INV,thrs2-1)
+        flipped = cv2.flip(edges_INV,thrs2) #水平，垂直，以及水平垂直翻转
         M = cv2.getRotationMatrix2D((640,480),thrs3,1)#旋转缩放矩阵：(旋转中心，旋转角度，缩放因子)
-        rotated = cv2.warpAffine(flipped ,M,(1280,960))
+        rotated = cv2.warpAffine(flipped ,M,(1280,960))#（原图， 收放指数， 如上， 最终大小）
 
         cv2.imshow('简笔画',rotated )
 
