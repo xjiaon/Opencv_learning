@@ -81,10 +81,14 @@ if __name__ == '__main__':
     cv2.namedWindow('简笔画',0)
 #创建一个名字叫edge的新窗口，用来显示加工后的效果图， 0的意思是， 窗口可伸缩
     cv2.createTrackbar('阀值', '简笔画', 203, 255, nothing)
+    cv2.createTrackbar('翻转', '简笔画', 2, 2, nothing)
+    cv2.createTrackbar('角度', '简笔画', 0, 360, nothing)
 #创建一个叫做thrs1的滑动条，默认值是127， 在0-255的范围内， 手动调整阀值范围， 调用上面的nothing模块，其实相当于什么都没做，这是格式要求的。
     while(True):
 #循环，为什么要循环？因为手动调整阀值，效果跟着变，不停地调整，不停的变，所以要循环
         thrs1 = cv2.getTrackbarPos('阀值', '简笔画')
+        thrs2 = cv2.getTrackbarPos('翻转', '简笔画')
+        thrs3 = cv2.getTrackbarPos('角度', '简笔画')
     #print thrs1
     #阀值thrs1等于edge窗口中thrs1的值
         ret, thresh=cv2.threshold(gray,thrs1,255,cv2.THRESH_BINARY_INV)
@@ -102,8 +106,11 @@ if __name__ == '__main__':
     #写入源文件， 替换掉原图
         edges_INV[0:192,0:256]=res1
     #左上角256x192部分等于上面的缩小的灰度原图
+        flipped = cv2.flip(edges_INV,thrs2-1)
+        M = cv2.getRotationMatrix2D((640,480),thrs3,1)#旋转缩放矩阵：(旋转中心，旋转角度，缩放因子)
+        rotated = cv2.warpAffine(flipped ,M,(1280,960))
 
-        cv2.imshow('简笔画',edges_INV)
+        cv2.imshow('简笔画',rotated )
 
     #显示新图
         cn=cv2.waitKey(5)
