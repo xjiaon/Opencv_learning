@@ -100,6 +100,9 @@ cv2.createTrackbar('纯度最低', '颜色捕捉', 0, 255, nothing)
 cv2.createTrackbar('纯度最高', '颜色捕捉', 61, 255, nothing)
 cv2.createTrackbar('亮度最低', '颜色捕捉', 120, 255, nothing)
 cv2.createTrackbar('亮度最高', '颜色捕捉', 248, 255, nothing)
+#cv2.createTrackbar('模糊度', '颜色捕捉', 248, 255, nothing)
+
+
 
 
 
@@ -121,6 +124,7 @@ while (True):
     thrs4 = cv2.getTrackbarPos('纯度最高', '颜色捕捉')
     thrs5 = cv2.getTrackbarPos('亮度最低', '颜色捕捉')
     thrs6 = cv2.getTrackbarPos('亮度最高', '颜色捕捉')
+#    thrs7 = cv2.getTrackbarPos('模糊度', '颜色捕捉')
     #print mode
     #print thrs1
 
