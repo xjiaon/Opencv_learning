@@ -23,15 +23,16 @@ while(1):
 #cv2.imshow('0',cv2.imread("hammer.jpg"))
 
   ret, thresh = cv2.threshold(blur, thrs2, 255, cv2.THRESH_BINARY)
-  image, contours, hier = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+  image, contours, hier = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)#找最外侧的轮廓
 
-  for c in contours:
-  # find bounding box coordinates
-    x,y,w,h = cv2.boundingRect(c)
-    cv2.rectangle(img, (x,y), (x+w, y+h), (255, 0, 0), 2)
+  for c in contours: 
+  # find bounding box coordinates,当c属于轮廓的时候
+    x,y,w,h = cv2.boundingRect(c) #x,y w,h分别起点横纵坐标， 宽度以及高度
+    cv2.rectangle(img, (x,y), (x+w, y+h), (255, 0, 0), 2) #用蓝色画外框
 
   # find minimum area
     rect = cv2.minAreaRect(c)
+    #计算最小长方形
   # calculate coordinates of the minimum area rectangle
     box = cv2.boxPoints(rect)
   # normalize coordinates to integers
@@ -41,6 +42,7 @@ while(1):
   
     # calculate center and radius of minimum enclosing circle
     (x,y),radius = cv2.minEnclosingCircle(c)
+    #计算最小圆形，并画圆
     # cast to integers
     center = (int(x),int(y))
     radius = int(radius)
