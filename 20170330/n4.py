@@ -29,6 +29,7 @@ while(True):
     if cn==ord("2"):
         im2=img
     diff = cv2.absdiff(im1, img)
+    subtracted=cv2.bitwise_xor(img,im1)
     blur = cv2.GaussianBlur(diff,(5,5),0)
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 
@@ -58,6 +59,7 @@ while(True):
     #cv2.imshow('gray',gray)
     #cv2.imshow('blur',blur)
     cv2.imshow('diff',diff)
+    cv2.imshow('subtracted',subtracted)
     cv2.imshow('ÑÕÉ«²¶×½',thresh1)
     cv2.imshow('1',thresh1)
     cv2.imshow('2',thresh1_INV)
