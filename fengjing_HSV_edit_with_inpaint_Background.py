@@ -93,7 +93,7 @@ if x1==480.0:
 else:
     im = cv2.resize(im,(960, 720), interpolation = cv2.INTER_CUBIC)
 cv2.namedWindow('ÑÕÉ«²¶×½')
-cv2.namedWindow('123'£¬0)
+cv2.namedWindow('123',0)
 
 cv2.setMouseCallback('ÑÕÉ«²¶×½',draw_circle)
 cv2.createTrackbar('É«²Ê×îµÍ', 'ÑÕÉ«²¶×½', 74, 255, nothing)
