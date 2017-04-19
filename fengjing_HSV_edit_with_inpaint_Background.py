@@ -140,6 +140,8 @@ while (True):
     thresh1 = cv2.inRange(hsv, lower_blue, upper_blue)
     blur = cv2.blur(thresh1,(thrs7,thrs7),0)
     ret3,thresh1 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    kernel = np.ones((5,5),np.uint8)
+    #thresh1 = cv2.erosion(thresh1,kernel,iterations = 1)
 
     #thresh1_INV=cv2.bitwise_not(mask)
 
@@ -159,9 +161,9 @@ while (True):
     im1_FG=color_transfer(im2,im1)
     #把背景图上色
     im_FG=cv2.add(im1_FG,thresh1a)
-    cv2.imshow('1',im_FG)
+    #cv2.imshow('1',im_FG)
     #im_FG=color_transfer(im2,im_FG)
-    cv2.imshow('2',im_FG)
+    #cv2.imshow('2',im_FG)
 #前景图把人物抠出来
 
     im_BG=cv2.add(im2,thresh1_INVa)
@@ -180,7 +182,7 @@ while (True):
     #cv2.imshow('456',mixed_clone)
     cn=cv2.waitKey(50)
     if cn==ord(' '):
-        d=c+50
+        d=c+1
     if c==d:
         print ('0')
         cn=cv2.waitKey(30)
