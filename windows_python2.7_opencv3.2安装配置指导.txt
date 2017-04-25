@@ -1,6 +1,29 @@
-﻿win7+python3.6+opencv3.2+contri
-推荐python 用新的3.6
-opencv到下面去下载
+﻿win7+python3.6+opencv3.2+contrib
+推荐python 用新的3.5  32位，为什么是32位？因为我的电脑就是32位的系统
+为什么不是2.7？ 因为opencv contrib 包只支持3.5 3.6
+为什么不是最新的3.6？ 因为我准备研究dlib，一个关于人脸的模块，目前仅支持到3.5
+python3.5下载地址
+https://www.python.org/downloads/release/python-353/
+选择“Windows x86 executable installer”
+
+安装完成python3.5后，先安装numpy
+pip install numpy
+或者下载“numpy‑1.12.1+mkl‑cp35‑cp35m‑win32.whl”
+http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+再安装opencv+contrib
+opencv_python‑3.2.0+contrib‑cp35‑cp35m‑win32.whl
+http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+最后安装dlib
+https://pypi.python.org/pypi/dlib/18.17.100
+选择dlib-18.17.100-cp35-none-win32.whl (md5)
+关于dlib的用法
+请看这位牛人博客
+http://www.pyimagesearch.com/
+
+
+
 
 两个安装python软件包的地址
 
