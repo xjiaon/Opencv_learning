@@ -31,6 +31,7 @@ while cv2.waitKey(1)!=27:
  
 # detect faces in the grayscale image
     rects = detector(gray, 1)
+    #print (rects)
 
 # loop over the face detections
     for (i, rect) in enumerate(rects):
