@@ -30,9 +30,9 @@ def draw_circle(event,x,y,flags,param):
     if event == cv2.EVENT_LBUTTONDBLCLK:
         if mode==True:
                 
-            print x,y
+            print (x,y)
         else:
-            print y,x
+            print (y,x)
 def nothing(x):
     pass
 #自定义一个nothing的模块， 后面的trackbar动作会用到
@@ -49,7 +49,7 @@ if __name__ == '__main__':
         #尝试获得命令的第一个参数， 也就是图片的名字
     except:
         fn = 'images/time.jpg'
-        print fn
+        print (fn)
         #如果找不到上面指定的图片名称， 默认名称为time.jpg
     mode=1
     #自定义一个模式,按m键切换原图,效果图
@@ -118,9 +118,9 @@ if __name__ == '__main__':
             break
 
         if cn==ord('m'):
-            print 'm'
+            print ('m')
             mode = not mode
-            print mode
+            print (mode)
             if mode==True:
                 edges_INV=res
                 cv2.imshow('简笔画1',res)
