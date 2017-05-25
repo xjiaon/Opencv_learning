@@ -22,7 +22,7 @@ def draw_circle(event,x,y,flags,param):
 
     
 img=np.zeros((480,640,3),np.uint8)
-cv2.namedWindow('img')
+cv2.namedWindow('img',0)
 cv2.setMouseCallback('img',draw_circle)
 while 1:
     cv2.imshow('img',img)
