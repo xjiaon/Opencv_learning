@@ -29,3 +29,38 @@ http://www.pyimagesearch.com/
 
 https://pypi.python.org/pypi/
 http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+
+python上的Gui, easygui
+安装方法：
+pip install easygui
+用法1
+import easygui
+easygui.msgbox('hello world')
+
+用法2
+from easygui import msgbox, multenterbox
+
+fieldNames = ["Name"]
+fieldValues = list(multenterbox(msg='Fill in values for the fields.', title='Enter', fields=(fieldNames)))
+msgbox(msg=(fieldValues), title = "Results")
+print (fieldValues)
+
+用法3
+import easygui
+image = "3.jpg"
+msg = "Do you like this picture?"
+choices = ["Yes","No","No opinion"]
+reply = easygui.buttonbox(msg, image=image, choices=choices)
+
+更多用法
+http://easygui.sourceforge.net/tutorial.html
+
+
+
+pip 在win7 下更改国内的源
+C:\Users\%username%\AppData\Local\pip
+手动建pip.ini, 内容如下
+[global] 
+index-url = http://pypi.douban.com/simple/ 
+trusted-host = pypi.douban.com 
