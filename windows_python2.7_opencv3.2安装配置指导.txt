@@ -64,3 +64,11 @@ C:\Users\%username%\AppData\Local\pip
 [global] 
 index-url = http://pypi.douban.com/simple/ 
 trusted-host = pypi.douban.com 
+
+
+python转exe的方法
+先安装pyinstaller
+pip install pyinstaller
+生成exe的方法
+pyinstaller yourfile.py
+pyinstaller --onefile yourfile.py
