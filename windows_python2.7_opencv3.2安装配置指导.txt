@@ -22,6 +22,16 @@ https://pypi.python.org/pypi/dlib/18.17.100
 请看这位牛人博客
 http://www.pyimagesearch.com/
 
+py -2 -m pip install XXXX
+
+
+-2 还是表示使用 Python2，-m pip 表示运行 pip 模块，也就是运行pip命令了。如果是为Python3安装软件，那么命令类似的变成
+
+
+py -3 -m pip install XXXX
+
+
+
 
 
 
