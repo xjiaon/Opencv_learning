@@ -82,3 +82,19 @@ pip install pyinstaller
 生成exe的方法
 pyinstaller yourfile.py
 pyinstaller --onefile yourfile.py
+
+
+pip install 在windows下始终因ascii报错UnicodeDecodeError
+petanne petanne 2015-10-22 16:47:42
+问题是使用pip install django 或其它时，始终报错：
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xb1 inposition 34: ordinal
+not in range(128)
+
+原因是windows的cmd环境默认为gbk编码，pip默认用utf8编码。
+在Linux和Mac中，terminal环境默认的是utf8编码，所以不会报错。
+
+解决方法：
+python目录 Python27\Lib\site-packages 建一个文件sitecustomize.py 
+内容为： 
+import sys 
+sys.setdefaultencoding('gbk') 
