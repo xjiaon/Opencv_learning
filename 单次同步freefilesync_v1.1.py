@@ -19,8 +19,9 @@ def freefilesync_mask(item):
     print (item)
     f=codecs.open('BatchRun.ffs_batch','r+',encoding='utf-8')
     flist=f.readlines()
-    flist[24]='                <Item>'+item+'</Item>\n'
-    print (flist[24])
+    #flist[24]='                <Item>'+item+'</Item>\n'
+    flist[40]='                <Left>\\PC-201704171154\Users</Left>'
+    print (flist[40])
     print (flist)
     f=codecs.open('BatchRun.ffs_batch','w+',encoding='utf-8')
     f.writelines(flist)
