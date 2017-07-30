@@ -37,7 +37,7 @@ def draw_circle(event,x,y,flags,param):
         print (x,y)
         px = im1[y,x]
         print ('RGB Value:')
-        print px
+        print (px)
         px_hsv = cv2.cvtColor(im1, cv2.COLOR_BGR2HSV)
         H=px_hsv.item(y,x,0)
         S=px_hsv.item(y,x,1)
@@ -69,7 +69,7 @@ except:
 #fn = cv2.resize(fn,(640, 480), interpolation = cv2.INTER_CUBIC)
 print ('第一个参数是')
 #print   sys.argv[1]   
-print fn
+print (fn)
     #如果找不到上面指定的图片名称， 默认名称为lufugong.jpg
 #尝试用1280x960打开摄像头， 如果失败， 使用默认的640x480
 
@@ -77,7 +77,7 @@ print ('start here')
 print ('实际分辨率为')
 y1=cap.get(3)
 x1=cap.get(4)
-print y1,x1
+print (y1,x1)
 #ret = cap.set(3,1280)
 #ret = cap.set(4,720)
 for filename in os.listdir(r'.\images'):

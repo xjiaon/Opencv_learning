@@ -6,9 +6,11 @@ from selenium.webdriver.common.keys import Keys
 官方说，目前不支持其他方式
 真的吗？
 对于一个喜欢diy的人，这些都不是个事。
-首先手机喵喵机的客户端上，打开我的信箱，选择永久， 纸条选择立即打印， 然后
+首先手机喵喵机的客户端上，打开我的信箱，选择永久， 纸条选择立即打印， 然后
+
 选择发送到微信朋友
-当然是发给《微信传输助手》，然后通过这个， 我们在浏览器打开，就可以获得一
+当然是发给《微信传输助手》，然后通过这个， 我们在浏览器打开，就可以获得一
+
 个永久的网页链接
 温馨提示， 手机上还要设着喵喵机的免杀， 免得黑屏后被系统进程杀掉。
 这个名字有点长， 需要改短一点，上网搜新浪短网址， 就可以缩短到很短，例如
@@ -41,8 +43,8 @@ class PythonOrgSearch(unittest.TestCase):
         #ele.click()
         print ("done")
         #图片位置，必须是绝对路径
-        ele.send_keys("c:\\temp\\1.jpg")
-        time.sleep(5)
+        ele.send_keys("C:\\CV\\Github\\Opencv_learning\\pic.jpg")
+        time.sleep(15)
         driver.find_element_by_id("btnPreview").click()
  
     def tearDown(self):

@@ -7,7 +7,7 @@ import numpy as np
 cap = cv2.VideoCapture(0)
 # 获取第一帧
 ret,frame = cap.read()
-print frame.shape
+print (frame.shape)
 # 设置初始跟踪对象的窗口大小
 #r,h,c,w = 120,100,253,100
 r,h,c,w = 180,80,140,90
