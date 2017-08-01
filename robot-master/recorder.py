@@ -125,10 +125,10 @@ def record_to_file(path):
 
 
 def recorder():
-    print (u"开始说话")
+    #print (u"开始说话")
     x=time.time()
     record_to_file('output.wav')
-    print (u"结束")
+    print (u"**********************")
     y=time.time()
     if y-x<3:
         return False
