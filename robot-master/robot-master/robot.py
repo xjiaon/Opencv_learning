@@ -42,7 +42,7 @@ def use_cloud(token):
         'Content-Type: audio/pcm; rate=8000',
         'Content-Length: %d' % f_len
     ]
-
+    print srv_url
     c = pycurl.Curl()
     c.setopt(pycurl.URL, str(srv_url)) #curl doesn't support unicode
     c.setopt(c.HTTPHEADER, http_header)   #must be list, not dict
@@ -57,7 +57,7 @@ def use_cloud(token):
 if __name__ == "__main__":
     token = get_token()
     while True:
-        raw_input()
+        #raw_input()
         isOk=recorder.recorder()
         if isOk:
             use_cloud(token)

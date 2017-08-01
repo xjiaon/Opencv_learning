@@ -57,9 +57,9 @@ def trim(snd_data):
 
 def add_silence(snd_data, seconds):
     "Add silence to the start and end of 'snd_data' of length 'seconds' (float)"
-    r = array('h', [0 for i in xrange(int(seconds * RATE))])
+    r = array('h', [0 for i in xrange(int(seconds * 8000))])
     r.extend(snd_data)
-    r.extend([0 for i in xrange(int(seconds * RATE))])
+    r.extend([0 for i in xrange(int(seconds * 8000))])
     return r
 
 
@@ -119,7 +119,7 @@ def record_to_file(path):
     wf = wave.open(path, 'wb')
     wf.setnchannels(1)
     wf.setsampwidth(sample_width)
-    wf.setframerate(RATE)
+    wf.setframerate(8000)
     wf.writeframes(data)
     wf.close()
 
@@ -130,6 +130,7 @@ def recorder():
     record_to_file('output.wav')
     print u"结束"
     y=time.time()
+    print ('time is', y-x)
     if y-x<3:
         return False
     else:
