@@ -130,7 +130,13 @@ def recorder():
     record_to_file('output.wav')
     print (u"**********************")
     y=time.time()
-    if y-x<3:
+    #print (y-x)
+    if y-x<1:
         return False
+        print ('too short')
+    elif y-x>10:
+        return False
+        print ('too long')
     else:
         return True
+    print ('record done')
