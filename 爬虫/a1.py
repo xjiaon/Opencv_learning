@@ -11,19 +11,11 @@ headers = { #伪装为浏览器抓取
     'Content-type':'text/html;charset=utf-8'  
 }
 #伪装浏览器头部，现在很多网站都使用https协议，不伪装过不去。
-url='http://ip.cn/'
+url='http://ip138.com/'
 #网站地址
 r = http.request('GET', url,headers = headers)
-#请求一个网页
 try:
     content=r.data.decode('UTF-8')
 except:
     content=r.data.decode('gb2312')
 
-#中文转码
-pattern = re.compile('<code>(.*?)</code>',re.S)
-
-b=re.findall(pattern,content)
-#正则表达式，查询的内容，注意问号为最小查询，否则返回最大查询
-print ('你的IP是'+b[0],'\n你的地址是'+b[1])
-#打印我们要的内容。
