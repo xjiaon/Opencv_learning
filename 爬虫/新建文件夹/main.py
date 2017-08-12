@@ -5,7 +5,8 @@ from selenium.webdriver.common.keys import Keys
 global driver
 driver = webdriver.Chrome()
 driver.get("https://wx.qq.com/")
-time.sleep(5)
+b=a1.driver.find_element_by_class_name("login_box").is_displayed()
+
 def try1():
     try:
         print ('try')

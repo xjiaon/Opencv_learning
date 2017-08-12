@@ -1,16 +1,14 @@
 import weixin_main,time,datetime,qiushi
+from weixin_main import webpage1
 from selenium.webdriver.common.keys import Keys
 def test():
-    print ('12sdfas30')
-    time.sleep(2)
-    b=weixin_main.driver.find_element_by_class_name("login_box").is_displayed()  
-    if b:
-        print ('yes, find',b)
-          
-    else:
-        print ('oh, no',b)
-        pass
-    
+    print ('here112')
+    print (webpage1.driver)
+    print (weixin_main.driver)
+    print ('end')
+    #weixin_main.driver.find_element_by_class_name("main_inner")
+    print ('here1')
+    #print (weixin_main.driver.find_element_by_class_name("heroCanvas").is_displayed())      
 def test2():
     print ('nothing')
     print ('12sdfas3')
