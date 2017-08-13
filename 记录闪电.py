@@ -29,4 +29,4 @@ while True:
     cv2.imshow('1',frame)
 
     #print (thresh.size)
-    cv2.waitKey(500)
+    cv2.waitKey(30)
