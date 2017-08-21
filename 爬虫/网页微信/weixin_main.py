@@ -1,4 +1,4 @@
-import time,imp,weixin_action
+import time,imp,weixin_action,糗事百科抓文字
 #time时间工具，imp重新加载模块工具，weixin_action,微信内部动作模块
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys

@@ -1,7 +1,7 @@
-import datetime,time
+import datetime,time,糗事百科抓文字
 #设定开始时间start_time
-def timer()
-    sched_time = datetime.datetime(2017, 8, 19, 10, 53, 00)
+def timer():
+    sched_time = datetime.datetime(2017, 8, 19, 12, 10, 50)
     #间隔时间
     timedelta=datetime.timedelta(minutes=1)
     #取当下时间
@@ -17,7 +17,9 @@ def timer()
                 sched_time=str(datetime.datetime.now()+timedelta)[:-7]
                 print (sched_time)
                 print ('请在这里开始你的程序')
+                abc=糗事百科抓文字.main()
+                print ('abc is ',abc)
             time.sleep(1)
             print (now)
-        
-    
+if __name__=='__main__':
+    timer()
