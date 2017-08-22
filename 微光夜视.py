@@ -5,6 +5,9 @@ import numpy as np
 其中暗光环境中，绿色最为敏感，所以我们把绿色分离出来，做加强
 '''
 cap=cv2.VideoCapture(0)
+cap.set(3,3000)
+cap.set(4,3000)
+cap.set(15, 2.0)
 dict={}
 i=0
 #夜光放大倍数
