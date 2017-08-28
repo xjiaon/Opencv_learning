@@ -26,9 +26,12 @@ https://pypi.python.org/pypi/dlib/18.17.100
 http://www.pyimagesearch.com/
 
 ## python 2 ,3 共存
-
+分别用2，3打开相应的py文档
+py -2 -m yourpyfile
+py -3 -m yourpyfile
+分别用 2，3 pip安装模块
 py -2 -m pip install XXXX
-
+py -3 -m pip install XXXX
 
 -2 还是表示使用 Python2，-m pip 表示运行 pip 模块，也就是运行pip命令了。如果是为Python3安装软件，那么命令类似的变成
 
@@ -39,14 +42,37 @@ py -3 -m pip install XXXX
 
 
 
-##
-##两个安装python软件包的地址
+## pip的安装相关
+两个安装python软件包的地址
 
 https://pypi.python.org/pypi/
 http://www.lfd.uci.edu/~gohlke/pythonlibs/
 
+pip的本地化， 
+存在本地的C:\Users\%username%\pip\pip.ini
+[global]
+timeout = 600
+trusted-host=www.lfd.uci.edu or pypi.python.org or mirrors.ustc.edu.cn or 
 
-python上的Gui, easygui
+pypi.mirrors.ustc.edu.cn or pypi.doubanio.com or mirrors.aliyun.com or 
+
+pypi.hustunique.com or pypi.sdutlinux.org or pypi.douban.com
+#trusted-host=www.lfd.uci.edu
+[install]
+find-links =
+	https://mirrors.aliyun.com/pypi/simple/
+	http://pypi.doubanio.com/simple/
+	https://mirrors.ustc.edu.cn/pypi/web/simple/
+	http://pypi.douban.com/
+	http://pypi.hustunique.com/
+	http://pypi.sdutlinux.org/
+	http://pypi.mirrors.ustc.edu.cn/
+	http://pypi.python.org/pypi/
+	http://www.lfd.uci.edu/~gohlke/pythonlibs/
+	https://mirrors.ustc.edu.cn/pypi/web/simple/
+
+
+## python上的Gui, easygui
 安装方法：
 pip install easygui
 用法1
@@ -81,7 +107,7 @@ index-url = http://pypi.douban.com/simple/
 trusted-host = pypi.douban.com 
 
 
-python转exe的方法
+## python转exe的方法
 先安装pyinstaller
 pip install pyinstaller
 生成exe的方法
@@ -89,7 +115,7 @@ pyinstaller yourfile.py
 pyinstaller --onefile yourfile.py
 
 
-pip install 在windows下始终因ascii报错UnicodeDecodeError
+## pip install 在windows下始终因ascii报错UnicodeDecodeError
 petanne petanne 2015-10-22 16:47:42
 问题是使用pip install django 或其它时，始终报错：
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xb1 inposition 34: ordinal
@@ -104,9 +130,3 @@ python目录 Python27\Lib\site-packages 建一个文件sitecustomize.py
 import sys 
 sys.setdefaultencoding('gbk') 
 
-H1 :# Header 1
-﻿H2 :## Header 2
-H3 :### Header 3
-H4 :#### Header 4
-H5 :##### Header 5
-H6 :###### Header 6
