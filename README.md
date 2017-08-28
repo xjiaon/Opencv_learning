@@ -130,3 +130,7 @@ python目录 Python27\Lib\site-packages 建一个文件sitecustomize.py
 import sys 
 sys.setdefaultencoding('gbk') 
 
+## python添加环境变量 path
+import sys
+sys.path.append('c:\\')
+
