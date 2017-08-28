@@ -1,7 +1,5 @@
-﻿# Opencv_learning这是一个 opencv的学习的个人库， 安装配置环境请查看下面的文档
-
-
-
+# python opencv  以及其它一些小工具胡学习测试文库
+## opencv的安装介绍部分
 目前刚写了  一个转换动画片彩色图片到黑白图片的儿童绘本的脚本， 以后慢慢写， 慢慢更新
 win7+python3.6+opencv3.2+contrib
 推荐python 用新的3.5  32位，为什么是32位？因为我的电脑就是32位的系统
@@ -27,6 +25,8 @@ https://pypi.python.org/pypi/dlib/18.17.100
 请看这位牛人博客
 http://www.pyimagesearch.com/
 
+## python 2 ,3 共存
+
 py -2 -m pip install XXXX
 
 
@@ -40,7 +40,7 @@ py -3 -m pip install XXXX
 
 
 ##
-两个安装python软件包的地址
+##两个安装python软件包的地址
 
 https://pypi.python.org/pypi/
 http://www.lfd.uci.edu/~gohlke/pythonlibs/
@@ -103,3 +103,10 @@ python目录 Python27\Lib\site-packages 建一个文件sitecustomize.py
 内容为： 
 import sys 
 sys.setdefaultencoding('gbk') 
+
+H1 :# Header 1
+﻿H2 :## Header 2
+H3 :### Header 3
+H4 :#### Header 4
+H5 :##### Header 5
+H6 :###### Header 6
