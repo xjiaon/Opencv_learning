@@ -1,5 +1,5 @@
 import cv2
-cap=cv2.VideoCapture(2)
+cap=cv2.VideoCapture(1)
 ret=cap.set(3,5000)
 ret=cap.set(4,5000)
 ret=cap.set(15,0)
@@ -8,7 +8,7 @@ cap.set(11,200)#对比度，最高250
 
 
 n=0
-time=20
+time=10
 
 dict={}
 
@@ -32,7 +32,7 @@ while 1:
         while y>=1:
             #print ('y is ',y)
             y=y-1
-            f=f+dict[n-y]
+            f=cv2.add(f,dict[n-y])
             
             
         cv2.imshow('f',f)
