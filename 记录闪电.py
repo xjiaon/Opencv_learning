@@ -1,9 +1,19 @@
 import cv2,datetime
-###
+'''
 简单说下原理，截取摄像头的每一帧图， 计算光亮部分的面积， 如果超出前一张图的几倍（可自定义），则抓取并保存当前图片
 也就是说，当闪电时，比前面要亮好多，那么保存图像
-###
+'''
+def max_cap_size():
+    cap.set(3,3000)
+    cap.set(4,3000)
+    return(int(cap.get(3)),int(cap.get(4)))
+def cap_para():
+    cap.set(10,250)#亮度，最高250
+    cap.set(11,250)#对比度，最高250
+    cap.set(15 ,2)#曝光时间，最高0，普通-4
 cap=cv2.VideoCapture(0)
+max_cap_size()
+cap_para()
 #打开摄像头
 last=1
 #给上一张图初始化赋值
