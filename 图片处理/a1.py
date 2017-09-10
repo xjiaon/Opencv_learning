@@ -69,3 +69,25 @@ for i in range(0,int(x*n)):
         suofang[i,s]=img[int(i/n),int(s/n)]
 cv2.imshow('img',img)
 cv2.imshow('suofang',suofang)
+
+#实例8，从上往下逐行显示图片
+zhuhang=np.zeros(img.shape,np.uint8)
+x=img.shape[0]
+y=img.shape[1]
+for i in range(0,x):
+    zhuhang[i]=img[i]
+    cv2.imshow('zhuhang',zhuhang)
+    cv2.waitKey(10)
+cv2.imshow('img',img)
+
+
+#实例9，从上往下逐行显示图片
+zhuhang2=np.zeros(img.shape,np.uint8)
+x=img.shape[0]
+y=img.shape[1]
+for i in range(0,y):
+    zhuhang2[:,i]=img[:,i]
+    cv2.imshow('zhuhang2',zhuhang2)
+    cv2.waitKey(10)
+cv2.imshow('img',img)
+
