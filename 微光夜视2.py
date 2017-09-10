@@ -2,9 +2,9 @@ import cv2
 cap=cv2.VideoCapture(1)
 ret=cap.set(3,5000)
 ret=cap.set(4,5000)
-ret=cap.set(15,0)
-cap.set(10,230)#亮度，最高250
-cap.set(11,200)#对比度，最高250
+ret=cap.set(15,-1)
+#cap.set(10,230)#亮度，最高250
+#cap.set(11,200)#对比度，最高250
 
 
 n=0
