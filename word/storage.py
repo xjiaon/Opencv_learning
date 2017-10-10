@@ -5,7 +5,7 @@ from xlutils.copy import copy
 def switch(choice):
     if choice=='入库':
         print ('入库')
-        rk = g.enterbox("请输入物品编码：\n")
+        rk = g.enterbox("请输入物品编码：\n",title="入库")
         
         beijian = xlrd.open_workbook('beijian.xls')
         table = beijian.sheet_by_name('data')
@@ -42,15 +42,60 @@ def switch(choice):
             beijian1.get_sheet('history').write(nrows,2,fieldValues[0])
             beijian1.get_sheet('history').write(nrows,3,fieldValues[1])
             beijian1.get_sheet('history').write(nrows,4,fieldValues[2])
+            beijian1.save('beijian.xls')
             try:
                 beijian1.save('beijian.xls')
-                g.msgbox("保存失败，有人已打开excel表 \n 请关闭beijian.xls,再试")
+                g.msgbox(rk+"\n"+information+"\n"+fieldValues[0]+"\n"+fieldValues[1]+"\n"+fieldValues[2],"入库成功")
             except:
                 g.msgbox("保存失败，有人已打开excel表 \n 请关闭beijian.xls,再试")
                 return 'back'
             return 'hello'
     if choice=='出库':
         print ('出库')
+        rk = g.enterbox("请输入物品编码：\n",title="出库")
+        
+        beijian = xlrd.open_workbook('beijian.xls')
+        table = beijian.sheet_by_name('data')
+        nrows = table.nrows
+        mode=0
+        for i in range(nrows ):
+            #print (table.row_values(i)[0])
+            
+            if table.row_values(i)[0]==rk:
+                print ('same',rk)
+                mode=1
+                i0=i
+            else:
+                pass
+        if mode==0:
+            g.msgbox('无此物编,或请新增 '+rk, title='录入错误')
+            return '重来'
+        else:
+            information=table.row_values(i0)[1]
+            print (information)
+            g.msgbox(table.row_values(i0)[1],rk,ok_button,image='image/'+rk+'.jpg')
+            title = '出库'
+            fieldNames = ['去向','数量','备注']
+            fieldValues = []
+            msg=rk+'\n'+table.row_values(i0)[1]
+            fieldValues = g.multenterbox(msg,title,fieldNames)
+            print(fieldValues[1])
+            beijian = xlrd.open_workbook('beijian.xls')
+            table = beijian.sheet_by_name('history')
+            nrows = table.nrows
+            beijian1 = copy(beijian)
+            beijian1.get_sheet('history').write(nrows,0,rk)
+            beijian1.get_sheet('history').write(nrows,1,information)
+            beijian1.get_sheet('history').write(nrows,2,fieldValues[0])
+            beijian1.get_sheet('history').write(nrows,3,fieldValues[1])
+            beijian1.get_sheet('history').write(nrows,4,fieldValues[2])
+            beijian1.save('beijian.xls')
+            try:
+                beijian1.save('beijian.xls')
+                g.msgbox(rk+"\n"+information+"\n"+fieldValues[0]+"\n"+fieldValues[1]+"\n"+fieldValues[2],"出库成功")
+            except:
+                g.msgbox("保存失败，有人已打开excel表 \n 请关闭beijian.xls,再试")
+                return 'back'
         return 'hello'
     if choice=='新增':
         print ('新增')
