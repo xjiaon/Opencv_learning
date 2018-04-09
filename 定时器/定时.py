@@ -1,6 +1,6 @@
 import datetime,time
 #设定开始时间start_time
-def timer()
+def timer():
     sched_time = datetime.datetime(2017, 8, 19, 10, 53, 00)
     #间隔时间
     timedelta=datetime.timedelta(minutes=1)
